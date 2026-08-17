@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package orchestrator;
+
+// Runtime uses JSON serializers over generic gRPC handlers. This file documents
+// the logical RPC contract and can be migrated to generated stubs later.
+
+message Empty {}
+message RegisterRequest {
+  string token = 1;
+  string machine_id = 2;
+  string name = 3;
+  string hostname = 4;
+  string ip = 5;
+  int32 agent_port = 6;
+  int32 cpu_count = 7;
+  int64 memory_mb = 8;
+  string docker_version = 9;
+}
+message HeartbeatRequest {
+  string token = 1;
+  string machine_id = 2;
+  string name = 3;
+  string hostname = 4;
+  string ip = 5;
+  int32 agent_port = 6;
+  int32 cpu_count = 7;
+  int64 memory_mb = 8;
+  double cpu_percent = 9;
+  double memory_percent = 10;
+  int32 running_containers = 11;
+  string health = 12;
+  string docker_version = 13;
+}
+message Reply { bool ok = 1; string message = 2; string machine_id = 3; }
+
+service ManagerService {
+  rpc Register(RegisterRequest) returns (Reply);
+  rpc Heartbeat(HeartbeatRequest) returns (Reply);
+}
+
+message ContainerRequest {
+  string token = 1;
+  string container_id = 2;
+  bool force = 3;
+}
+message ListRequest { string token = 1; bool all = 2; }
+message CreateRequest {
+  string token = 1;
+  string image = 2;
+  int32 replicas = 3;
+  string name_prefix = 4;
+  repeated string env = 5;
+  string ports_json = 6;
+  repeated string volumes = 7;
+  string network = 8;
+}
+message ContainerReply { bool ok = 1; string json = 2; }
+
+service AgentService {
+  rpc Ping(Empty) returns (Reply);
+  rpc ListContainers(ListRequest) returns (ContainerReply);
+  rpc ListImages(ListRequest) returns (ContainerReply);
+  rpc CreateContainers(CreateRequest) returns (ContainerReply);
+  rpc StartContainer(ContainerRequest) returns (ContainerReply);
+  rpc StopContainer(ContainerRequest) returns (ContainerReply);
+  rpc RestartContainer(ContainerRequest) returns (ContainerReply);
+  rpc RemoveContainer(ContainerRequest) returns (ContainerReply);
+  rpc InspectContainer(ContainerRequest) returns (ContainerReply);
+  rpc Logs(ContainerRequest) returns (ContainerReply);
+}
