@@ -1,0 +1,5 @@
+machine_id: e48bcd88-153b-4f1b-812a-8c38edaee1b3
+name: machine-1
+manager_address: 10.171.21.14:9000
+token: abc123
+port: 9001
