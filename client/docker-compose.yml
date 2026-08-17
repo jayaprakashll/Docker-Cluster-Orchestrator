@@ -1,0 +1,15 @@
+services:
+  orbit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: orbit-control-plane
+
+    ports:
+      - "5173:80"
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    restart: unless-stopped
