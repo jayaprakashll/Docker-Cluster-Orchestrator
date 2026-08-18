@@ -9,7 +9,7 @@ export default function Layout({
   return (
     <div className="app-shell">
       <aside className="sidebar">
-        <div className="brand">◈ ORBIT</div>
+        <div className="brand">DockerC🐳</div>
 
         <div className="brand-subtitle">
           DOCKER CLUSTER CONTROL PLANE

@@ -93,7 +93,7 @@ cd server
 Create a virtual environment:
 
 ```bash
-python -m venv env
+python -m venv venv
 ```
 
 Activate the environment:
@@ -101,7 +101,7 @@ Activate the environment:
 Windows:
 
 ```powershell
-env\Scripts\activate
+venv\Scripts\activate
 ```
 
 Git Bash:
@@ -114,6 +114,7 @@ Install dependencies:
 
 ```bash
 pip install -r requirements.txt
+pip install -e .
 ```
 
 Join the cluster:

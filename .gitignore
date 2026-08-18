@@ -1,0 +1,5 @@
+server/venv/
+server/**/__pycache__/
+server/orchestrator.db
+server/agent.yaml
+server/venv/
