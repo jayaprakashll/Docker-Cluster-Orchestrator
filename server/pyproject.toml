@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple-docker-cluster-orchestrator"
+version = "1.2.0"
+description = "A lightweight Docker cluster orchestrator with a Python manager and agents"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.100",
+  "uvicorn[standard]>=0.23",
+  "grpcio>=1.60",
+  "docker>=7.0",
+  "SQLAlchemy>=2.0",
+  "pydantic>=2.0",
+  "psutil>=5.9",
+  "PyYAML>=6.0",
+  "typer>=0.12",
+  "httpx>=0.25",
+]
+
+[project.scripts]
+orchestrator = "cli.orchestrator.main:app"
+orchestrator-agent = "agent.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["manager*", "agent*", "cli*", "common*"]
