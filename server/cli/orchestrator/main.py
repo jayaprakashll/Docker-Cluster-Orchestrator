@@ -51,6 +51,7 @@ def images(machine: Optional[str] = typer.Option(None, "--machine", "-m")):
     typer.echo(json.dumps(data["images"], indent=2))
 
 
+
 @app.command()
 def run(
     image: str = typer.Option(..., "--image", "-i"),
