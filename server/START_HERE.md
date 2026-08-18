@@ -35,19 +35,19 @@ cd server
 Create a virtual environment:
 
 ```bash
-python -m venv env
+python -m venv venv
 ```
 
 Windows:
 
 ```powershell
-env\Scripts\activate
+venv\Scripts\activate
 ```
 
 Git Bash:
 
 ```bash
-source env/Scripts/activate
+source venv/Scripts/activate
 ```
 
 Install dependencies:
